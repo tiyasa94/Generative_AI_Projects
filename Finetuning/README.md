@@ -81,3 +81,12 @@ dataset = to_sharegpt(
 )
 ```
 
+## 6. Standardize the Dataset for ShareGPT
+
+After converting the dataset into the ShareGPT format, it’s important to standardize the structure of the dataset to ensure consistency. The **`standardize_sharegpt`** function from **unsloth** is used to achieve this.
+
+We use the **`standardize_sharegpt`** function to ensure that the dataset follows a consistent structure for each conversation. This function will ensure that all conversations are formatted correctly before fine-tuning the model.
+
+```python
+dataset = standardize_sharegpt(dataset)
+```
