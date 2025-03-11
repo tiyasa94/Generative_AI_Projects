@@ -129,3 +129,84 @@ By calling the `train()` method, the model begins to learn from the dataset by a
 trainer_stats = trainer.train()
 ```
 
+## 9. Install Ollama
+
+To integrate **Ollama** into your project, you need to install it on your system. Ollama is a platform that enables running large language models locally, which can be useful for fine-tuning and inference tasks.
+
+You can install Ollama using the following command:
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+## 10. Save the Fine-Tuned Model
+
+After training the model, it’s essential to save the fine-tuned model for later use or deployment. The **`save_pretrained_gguf()`** method allows you to save the model in the **GGUF** (Generic GPT Unified Format), which is a format optimized for easier loading and sharing of large language models.
+
+You can save the fine-tuned model using the following command:
+
+```python
+model.save_pretrained_gguf("model", tokenizer)
+```
+
+## 11. Start the Ollama Server
+
+After saving your fine-tuned model, you may want to serve it locally for inference or integration into applications. You can start the Ollama server, which will run the model and handle incoming requests.
+
+### Start Ollama Server
+
+You can start the Ollama server using the following Python code:
+
+```python
+subprocess.Popen(["ollama", "serve"])
+time.sleep(3)
+```
+
+## 12. Create the Model in Ollama
+
+After fine-tuning your model and saving it in the GGUF format, you can create a model in Ollama using the saved model file. This step makes the fine-tuned model available for inference and further use.
+
+You can create the model in Ollama with the following command:
+
+```bash
+ollama create deepseek_finetuned_finance_model_TM -f ./model/Modelfile
+```
+
+## 13. Interact with the Fine-Tuned Model
+
+Once the model is created in Ollama, you can interact with it to perform inference tasks. The **Ollama** library provides a simple interface to send chat-style queries to the model.
+
+### Send a Query to the Fine-Tuned Model
+
+To interact with the fine-tuned model, use the following Python code:
+
+```python
+response = ollama.chat(
+    model="deepseek_finetuned_finance_model_TM",  # Name of the fine-tuned model
+    messages=[{
+        "role": "user",
+        "content": "What is the difference between home loan and consumer loan? Explain with example."
+    }]
+)
+print(response.message.content)
+```
+
+## Conclusion
+
+In this guide, we've walked through the entire process of fine-tuning the **DeepSeek** model for the **finance domain**, from setting up the environment and loading the dataset to fine-tuning the model and deploying it for inference. You have learned how to:
+
+- Install necessary dependencies and tools such as **Ollama**.
+- Load and preprocess a finance-specific dataset for training.
+- Fine-tune the model using **unsloth** and the **SFTTrainer**.
+- Standardize and prepare the dataset for serving with **ShareGPT**.
+- Save and create the fine-tuned model in Ollama.
+- Interact with the model by sending chat-style queries.
+
+By following these steps, you now have a **fine-tuned DeepSeek model** tailored for the finance domain, ready to be deployed for various real-time applications such as answering finance-related questions, generating financial insights, and more.
+
+The knowledge gained from this guide can be used to further enhance the model, integrate it into larger systems, or apply it to other specialized domains. With the foundation laid, you can confidently move forward with deploying and scaling your finance-specific AI model.
+
+
+
+
+
