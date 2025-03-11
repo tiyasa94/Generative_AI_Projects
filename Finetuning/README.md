@@ -90,3 +90,30 @@ We use the **`standardize_sharegpt`** function to ensure that the dataset follow
 ```python
 dataset = standardize_sharegpt(dataset)
 ```
+
+## 7. Fine-Tune the Model Using SFTTrainer
+
+After preparing and standardizing the dataset, the next step is fine-tuning the model using the **SFTTrainer** class from **TRL** (Transformers Reinforcement Learning). This class simplifies the training process by handling much of the underlying complexity.
+
+### SFTTrainer Configuration
+
+The **SFTTrainer** is designed to manage the fine-tuning process efficiently. It accepts several parameters that control how the model will be trained, including the dataset, batch sizes, learning rate, and the model itself.
+
+Key parameters for **SFTTrainer** include:
+
+- **Model and Tokenizer**: You will provide the pre-trained model and its associated tokenizer. These will be used to process the input data and generate the model’s output.
+  
+- **Training Dataset**: The dataset you’ve prepared and standardized is passed to the trainer, ensuring that the model receives structured input that matches its training requirements.
+
+- **TrainingArguments**: This is a collection of hyperparameters that control how the training will proceed. It includes settings like:
+  - **Batch Size**: Determines how many samples the model processes before updating its weights. This is an important factor that can affect both training speed and memory usage.
+  - **Learning Rate**: The rate at which the model adjusts its weights. A high learning rate can lead to instability, while a low rate might make the training process slower.
+  - **Number of Training Steps**: Specifies how many steps the model will take during training. More steps usually result in better fine-tuning but require more computational resources.
+  - **Gradient Accumulation**: This allows the model to accumulate gradients over multiple steps before performing a backward pass, which helps when working with larger models or smaller batch sizes.
+  - **Precision**: Mixed-precision training (16-bit or bfloat16) can be enabled for more memory-efficient training. This is particularly helpful for training large models on hardware with limited memory.
+
+- **Other Optimizations**: 
+  - **Gradient Checkpointing**: This technique allows you to reduce memory usage during backpropagation by saving intermediate results only when necessary, allowing you to train larger models.
+  - **Weight Decay**: This helps prevent overfitting by penalizing large weights during training, ensuring that the model generalizes well to unseen data.
+
+
