@@ -54,3 +54,16 @@ model = FastLanguageModel.get_peft_model(
     use_rslora=False,  # Disables the use of RSLoRA (Revised LoRA) if False
     loftq_config=None,  # Optional configuration for LoFTQ
 )
+```
+
+## 4. Load the Finance Dataset 
+
+To fine-tune the model for the finance domain, we need a dataset that contains finance-related content. In this step, we load the **Finance-Instruct-500k** dataset, which is specifically designed for finance tasks.
+
+We use the `datasets` library to load the dataset. This library provides access to many pre-built datasets for NLP tasks.
+
+```python
+dataset = load_dataset("Josephgflowers/Finance-Instruct-500k", split="train")
+```
+
+
