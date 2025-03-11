@@ -66,4 +66,18 @@ We use the `datasets` library to load the dataset. This library provides access 
 dataset = load_dataset("Josephgflowers/Finance-Instruct-500k", split="train")
 ```
 
+## 5. Convert Dataset to ShareGPT Format
+
+To make the dataset suitable for fine-tuning, we need to preprocess it into a conversation-like format. This step involves using the **`to_sharegpt`** function from **unsloth** to format the dataset into a structure that aligns with the conversation flow.
+
+We use the **`to_sharegpt`** function to convert the dataset into the correct format for training, where the input and output are aligned in a conversation-style format.
+
+```python
+dataset = to_sharegpt(
+    dataset,
+    merged_prompt="{user}[[\nYour input is:\n{system}]]",  # Merged prompt using available columns
+    output_column_name="assistant",  # Output column name to be used for the assistant's response
+    conversation_extension=3,  # Extend the conversation by 3 steps
+)
+```
 
