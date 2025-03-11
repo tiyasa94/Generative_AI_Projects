@@ -117,3 +117,15 @@ Key parameters for **SFTTrainer** include:
   - **Weight Decay**: This helps prevent overfitting by penalizing large weights during training, ensuring that the model generalizes well to unseen data.
 
 
+## 8. Start Training the Model
+
+Once the **SFTTrainer** is configured, the next step is to begin the training process. This is done by calling the **`train()`** method on the **SFTTrainer** instance. This will initiate the fine-tuning of the model on your dataset using the parameters you have specified.
+
+### Training the Model
+
+By calling the `train()` method, the model begins to learn from the dataset by adjusting its parameters (weights) to minimize the loss function over the course of several training steps.
+
+```python
+trainer_stats = trainer.train()
+```
+
